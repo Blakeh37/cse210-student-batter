@@ -37,7 +37,7 @@ class HandleCollisionsAction(Action):
         #Check if there is the ball collides with any of bricks
         for brick in bricks:
             if ball.get_position().equals(brick.get_position()):
-                self._output_service.delete_brick()
+                self._output_service.delete_brick(brick.get_position())
 
         
         #Detect collisions between the ball and the paddles
