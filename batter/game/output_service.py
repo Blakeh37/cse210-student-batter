@@ -1,11 +1,13 @@
 import sys
 from game import constants
 from asciimatics.widgets import Frame
+from game.handle_collisions_action import HandleCollisionsAction
 
 class OutputService:
 
     def __init__(self, screen):
         self._screen = screen
+        self._collision = HandleCollisionsAction
         
     def clear_screen(self):
         """Clears the Asciimatics buffer for the next rendering.""" 
@@ -38,9 +40,16 @@ class OutputService:
         """Renders the screen.""" 
         self._screen.refresh()
 
-    def delete_brick(self, x, y):
-        self._screen.clear_buffer(x, y)
+    def delete_brick(self, brick):
+       
+        list = self._collision.bricks
+        list.pop(list[brick])
+
 
     def game_over(self):
         self.clear_screen()
+        middle_x = constants.MAX_X / 2
+        middle_y = constants.MAX_Y / 2
+        self._screen.print_at('Game Over', middle_x, middle_y)
+
         

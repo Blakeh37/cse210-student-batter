@@ -1,5 +1,5 @@
 class Action():
 
-    def execute(sefl, cast):
+    def execute(self, cast):
         pass
     
