@@ -39,5 +39,5 @@ class DrawActorsAction():
         for group in cast.values():
             self._output_service.draw_actors(group)
 
-        self._output_service.print_score_and_lives(self.__current_score, self.__current_lives)
+        #self._output_service.print_score_and_lives(self.__current_score, self.__current_lives)
         self._output_service.flush_buffer()

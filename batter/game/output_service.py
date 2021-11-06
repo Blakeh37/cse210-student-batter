@@ -2,6 +2,7 @@ import sys
 from game import constants
 from asciimatics.widgets import Frame
 from game.handle_collisions_action import HandleCollisionsAction
+from time import sleep
 
 class OutputService:
 
@@ -41,15 +42,22 @@ class OutputService:
         self._screen.refresh()
 
     def delete_brick(self, brick):
-       
-        list = self._collision.bricks
-        list.pop(list[brick])
+        x = brick.get_x()
+        y = brick.get_y()
+        self._screen.clear_buffer(7, 0, 0, x, y, 0, 0)
 
 
-    def game_over(self):
-        self.clear_screen()
-        middle_x = constants.MAX_X / 2
-        middle_y = constants.MAX_Y / 2
-        self._screen.print_at('Game Over', middle_x, middle_y)
+    def game_over(self, screen):
+        self._screen.clear_buffer(7, 0, 0)
+        middle_x = int(constants.MAX_X / 2)
+        middle_y = int(constants.MAX_Y / 2)
+        screen.print_at('Game Over', middle_x, middle_y)
+        screen.refresh()
+        sleep(5)
+
+    def game_over_start(self):
+        self._screen.wrapper(self.game_over)
+        quit()
+        
 
         
